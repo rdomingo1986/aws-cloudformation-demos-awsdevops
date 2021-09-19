@@ -1,0 +1,9 @@
+{
+  "StackName": "awsdevops-democloudformation-iamlayer",
+  "Tags": [
+      {
+        "Key": "Course",
+        "Value": "AWSDEVOPS"
+      }
+  ]
+}

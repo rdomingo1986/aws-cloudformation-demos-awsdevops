@@ -1,0 +1,15 @@
+{
+  "StackName": "awsdevops-democloudformation-vpclayer",
+  "Parameters": [
+      {
+        "ParameterKey": "AvailabilityZones",
+        "ParameterValue": "us-west-2a,us-west-2b"
+      }
+  ],
+  "Tags": [
+      {
+        "Key": "Course",
+        "Value": "AWSDEVOPS"
+      }
+  ]
+}

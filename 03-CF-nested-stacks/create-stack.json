@@ -1,0 +1,19 @@
+{
+  "StackName": "awsdevops-democloudformation-nestedstacks",
+  "Parameters": [
+      {
+          "ParameterKey": "S3BucketName",
+          "ParameterValue": "awsdevops-demoartifacts"
+      },
+      {
+        "ParameterKey": "AvailabilityZones",
+        "ParameterValue": "us-west-2a,us-west-2b"
+      }
+  ],
+  "Tags": [
+      {
+        "Key": "Course",
+        "Value": "AWSDEVOPS"
+      }
+  ]
+}

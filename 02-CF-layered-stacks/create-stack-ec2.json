@@ -1,0 +1,9 @@
+{
+  "StackName": "awsdevops-democloudformation-ec2layer",
+  "Tags": [
+      {
+        "Key": "Course",
+        "Value": "AWSDEVOPS"
+      }
+  ]
+}

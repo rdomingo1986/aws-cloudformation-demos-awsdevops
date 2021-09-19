@@ -1,0 +1,9 @@
+{
+  "StackName": "awsdevops-democloudformation-changesetstack",
+  "Tags": [
+      {
+        "Key": "Course",
+        "Value": "AWSDEVOPS"
+      }
+  ]
+}

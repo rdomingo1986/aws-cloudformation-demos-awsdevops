@@ -1,0 +1,9 @@
+{
+  "StackName": "course-demo-assets",
+  "Tags": [
+    {
+      "Key": "Course",
+      "Value": "AWSDEVOPS"
+    }
+  ]
+}
