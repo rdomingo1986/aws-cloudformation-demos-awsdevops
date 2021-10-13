@@ -270,9 +270,15 @@ Resources:
 Outputs:
   CodeBuildRoleArn:
     Value: !GetAtt CodeBuildRole.Arn
+    Export:
+      Name: Demo-AWSDEVOPS-CodeBuildRoleArn
 
   CodeDeployRoleArn:
     Value: !GetAtt CodeDeployRole.Arn
+    Export:
+      Name: Demo-AWSDEVOPS-CodeDeployRoleArn
 
   CodePipelineRoleArn:
     Value: !GetAtt CodePipelineRole.Arn
+    Export:
+      Name: Demo-AWSDEVOPS-CodePipelineRoleArn

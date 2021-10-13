@@ -1,0 +1,17 @@
+Resources:
+  DevelopmentEnvironment:
+    Type: AWS::Cloud9::EnvironmentEC2
+    Properties:
+      AutomaticStopTimeMinutes: 30
+      Description: Ambiente de desarrollo para el curso AWSDEVOPS
+      InstanceType: t2.micro
+      Name: AWSDEVOPS-DevEnv
+      OwnerArn: arn:aws:iam::864613434505:root
+      SubnetId: subnet-8b377fc0
+      Repositories:
+        - PathComponent: awsdevops-course-demos-2021
+          RepositoryUrl: https://git-codecommit.us-west-2.amazonaws.com/v1/repos/awsdevops-course-demos-2021
+
+      Tags:
+        - Key: Course
+          Value: AWSDEVOPS
