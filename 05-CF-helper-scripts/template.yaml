@@ -36,11 +36,11 @@ Parameters:
 Mappings:
   EnvironmentToInstanceType:
     Dev:
-      InstanceType: t2.nano
+      InstanceType: t3.nano
     Test:
-      InstanceType: t2.micro
+      InstanceType: t3.micro
     Prod:
-      InstanceType: t2.small
+      InstanceType: t3.small
 
 Resources:
   SSMIAMRole:
@@ -56,6 +56,7 @@ Resources:
               - sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+        - arn:aws:iam::864613434505:policy/codeploy-tutorial
 
   WebServerInstanceProfile:
     Type: AWS::IAM::InstanceProfile
@@ -149,7 +150,7 @@ Resources:
       UserData:
         Fn::Base64:
           !Sub |
-          #!/bin/bash -xe
+          #!/bin/bash
           # Update aws-cfn-bootstrap to the latest
           yum install -y aws-cfn-bootstrap
           # Call cfn-init script to install files and packages
