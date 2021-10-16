@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
-Description: CFN 101 Workshop - Lab 02 Resources.
+Description: CFN 101 Workshop - Lab 03 Intrinsic Functions.
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -23,9 +23,18 @@ Parameters:
       - t2.small
     Description: 'Enter t2.micro or t2.small. Default is t2.micro.'
 
+  AmiID:
+    Type: AWS::EC2::Image::Id
+    Description: 'The ID of the AMI.'
+
 Resources:
   WebServerInstance:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: ami-00a1270ce1e007c27 # This ImageId will only work in the London region
+      ImageId: !Ref AmiID
       InstanceType: !Ref InstanceType
+      Tags:
+        - Key: Name
+          Value: !Join [ '-', [ !Ref InstanceType, webserver ] ]
+        - Key: InstanceType
+          Value: !Sub ${InstanceType}-app

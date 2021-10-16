@@ -2,9 +2,40 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description: Assests para los laboratorios
 
+Parameters:
+  SSHKeyName:
+    Type: String
+    Description: The name of the key that will be created
+    Default: devopscourse-keypair
+  SecurityStackCreation:
+    Type: String
+    Default: true
+    Description: Whether or not you want to create security stack
+    AllowedValues:
+     - true
+     - false
+  AssestsStackCreation:
+    Type: String
+    Default: true
+    Description: Whether or not you want to create assests stack
+    AllowedValues:
+     - true
+     - false
+
+Conditions:
+  CreateSecurityStack: !Equals 
+    - !Ref SecurityStackCreation
+    - true
+
+  AssestsStackCreation:
+    !Equals 
+    - !Ref AssestsStackCreation
+    - true
+
 Resources:
   DemoPipelineAssets:
     Type: "AWS::CloudFormation::Stack"
+    Condition: AssestsStackCreation
     Properties:
       TemplateURL: https://aws-ilt-courses.s3.amazonaws.com/pipeline-assets.yml
       Tags: 
@@ -15,6 +46,8 @@ Resources:
     Type: "AWS::CloudFormation::Stack"
     Properties:
       TemplateURL: https://aws-ilt-courses.s3.amazonaws.com/keypair-creation.yml
+      Parameters: 
+        SSHKeyName: !Ref SSHKeyName
       Tags: 
         - Key: Course
           Value: AWSDEVOPS
@@ -31,6 +64,7 @@ Resources:
 
   DemoSecurityStackCICDTools:
     Type: "AWS::CloudFormation::Stack"
+    Condition: CreateSecurityStack
     Properties:
       TemplateURL: https://aws-ilt-courses.s3.amazonaws.com/security.yml
       Tags: 

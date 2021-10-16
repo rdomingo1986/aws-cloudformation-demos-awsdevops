@@ -7,7 +7,7 @@ Resources:
     Type: 'AWS::S3::Bucket'
     DeletionPolicy: Delete
     Properties:
-      BucketName: awsdevops-demoartifacts
+      BucketName: !Sub awsdevops-demoartifacts-${AWS::Region}
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true
@@ -33,7 +33,6 @@ Resources:
   LambdaRole: 
     Type: AWS::IAM::Role
     Properties:
-      RoleName: LambdaBuildingNotificationBasicRole
       AssumeRolePolicyDocument:
         Statement:
           - Effect: Allow

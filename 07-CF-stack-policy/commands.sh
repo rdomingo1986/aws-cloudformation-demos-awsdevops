@@ -1,0 +1,1 @@
+aws cloudformation set-stack-policy --stack-name changesets --stack-policy-url https://aws-ilt-courses.s3.amazonaws.com/stack-policy.json --region us-east-1

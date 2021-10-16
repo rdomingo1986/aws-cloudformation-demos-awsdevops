@@ -5,13 +5,11 @@ Parameters:
   SSHKeyName:
     Type: String
     Description: The name of the key that will be created
-    Default: devopscourse-keypair
 
 Resources:
   LambdaCustomResourceRole: 
     Type: AWS::IAM::Role
     Properties:
-      RoleName: LambdaCstomResourceRole
       AssumeRolePolicyDocument:
         Statement:
           - Effect: Allow
@@ -178,7 +176,7 @@ Resources:
               except Exception:
                   log_exception()
                   raise
-      FunctionName: lambdacustomresource-demo
+      FunctionName: !Ref SSHKeyName
       Handler: index.lambda_handler
       MemorySize: 128
       PackageType: Zip

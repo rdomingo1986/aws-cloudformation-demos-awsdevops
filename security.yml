@@ -99,6 +99,7 @@ Resources:
               - sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSCodeDeployRole
+        - arn:aws:iam::aws:policy/AWSCodeDeployRoleForECS
       Tags: 
         - Key: Course
           Value: AWSDEVOPS
