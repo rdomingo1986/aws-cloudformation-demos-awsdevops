@@ -43,27 +43,27 @@ Mappings:
       InstanceType: t3.small
 
 Resources:
-  SSMIAMRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Statement:
-          - Effect: Allow
-            Principal:
-              Service:
-                - ec2.amazonaws.com
-            Action:
-              - sts:AssumeRole
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
-        - arn:aws:iam::864613434505:policy/codeploy-tutorial
+  # SSMIAMRole:
+  #   Type: AWS::IAM::Role
+  #   Properties:
+  #     AssumeRolePolicyDocument:
+  #       Statement:
+  #         - Effect: Allow
+  #           Principal:
+  #             Service:
+  #               - ec2.amazonaws.com
+  #           Action:
+  #             - sts:AssumeRole
+  #     ManagedPolicyArns:
+  #       - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+  #       - arn:aws:iam::864613434505:policy/codeploy-tutorial
 
-  WebServerInstanceProfile:
-    Type: AWS::IAM::InstanceProfile
-    Properties:
-      Path: /
-      Roles:
-        - !Ref SSMIAMRole
+  # WebServerInstanceProfile:
+  #   Type: AWS::IAM::InstanceProfile
+  #   Properties:
+  #     Path: /
+  #     Roles:
+  #       - !Ref SSMIAMRole
 
   WebServerInstance:
     Type: AWS::EC2::Instance
@@ -139,7 +139,7 @@ Resources:
 
     Properties:
       AvailabilityZone: !Ref AvailabilityZone
-      IamInstanceProfile: !Ref WebServerInstanceProfile
+      #IamInstanceProfile: !Ref WebServerInstanceProfile
       ImageId: !Ref AmiID
       InstanceType: !FindInMap [EnvironmentToInstanceType, !Ref EnvironmentType, InstanceType]
       SecurityGroupIds:

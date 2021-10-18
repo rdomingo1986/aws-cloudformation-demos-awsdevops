@@ -15,6 +15,10 @@ Metadata:
         default: 'Amazon Machine Image ID'
 
 Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+  SubnetId:
+    Type: AWS::EC2::Subnet::Id
   SSHKeyName:
     Type: String
     Description: The name of the key that will be created
@@ -139,6 +143,7 @@ Resources:
                   - /etc/cfn/hooks.d/cfn-auto-reloader.conf
 
     Properties:
+      SubnetId: !Ref SubnetId
       IamInstanceProfile: !Ref WebServerInstanceProfile
       ImageId: !Ref AmiID
       KeyName: !Ref SSHKeyName
@@ -171,6 +176,7 @@ Resources:
   WebServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
+      VpcId: !Ref VpcId
       GroupDescription: 'Enable HTTP access via port 80'
       SecurityGroupIngress:
         - IpProtocol: tcp

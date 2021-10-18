@@ -3,8 +3,8 @@ Resources:
   InputQueue: 
     Type: "AWS::SQS::Queue"
     Properties: 
-      QueueName: "DriftLab-InputQueue"
-      VisibilityTimeout: 30
+      QueueName: "DriftLab-InputQueue2"
+      VisibilityTimeout: 40
       RedrivePolicy: 
         deadLetterTargetArn: 
           Fn::GetAtt: 
@@ -14,4 +14,4 @@ Resources:
   DeadLetterQueue: 
     Type: "AWS::SQS::Queue"
     Properties: 
-      QueueName: "DriftLab-ErrorQueue"
+      QueueName: "DriftLab-ErrorQueue2"

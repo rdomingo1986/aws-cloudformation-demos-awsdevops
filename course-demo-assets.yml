@@ -3,6 +3,9 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: Assests para los laboratorios
 
 Parameters:
+  AvailabilityZones:
+    Type: List<AWS::EC2::AvailabilityZone::Name>
+    Description: The list of Availability Zones to use for the subnets in the VPC.
   SSHKeyName:
     Type: String
     Description: The name of the key that will be created
@@ -33,7 +36,17 @@ Conditions:
     - true
 
 Resources:
-  DemoPipelineAssets:
+  DemoVPCStack:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: https://aws-ilt-courses.s3.amazonaws.com/vpc.yml
+      Parameters:
+        AvailabilityZones: !Join [ ',', !Ref AvailabilityZones ]
+      Tags: 
+        - Key: Course
+          Value: AWSDEVOPS
+
+  DemoPipelineAssetsStack:
     Type: "AWS::CloudFormation::Stack"
     Condition: AssestsStackCreation
     Properties:
@@ -42,7 +55,7 @@ Resources:
         - Key: Course
           Value: AWSDEVOPS
 
-  DemoSSHKeypair:
+  DemoSSHKeypairStack:
     Type: "AWS::CloudFormation::Stack"
     Properties:
       TemplateURL: https://aws-ilt-courses.s3.amazonaws.com/keypair-creation.yml
@@ -57,7 +70,9 @@ Resources:
     Properties:
       TemplateURL: https://aws-ilt-courses.s3.amazonaws.com/instancia.yml
       Parameters:
-        SSHKeyName: !GetAtt DemoSSHKeypair.Outputs.SSHKeyName
+        VpcId: !GetAtt DemoVPCStack.Outputs.VpcId
+        SubnetId: !GetAtt DemoVPCStack.Outputs.InstanceSubnetId
+        SSHKeyName: !GetAtt DemoSSHKeypairStack.Outputs.SSHKeyName
       Tags: 
         - Key: Course
           Value: AWSDEVOPS
