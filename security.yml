@@ -206,6 +206,7 @@ Resources:
             Action:
               - codebuild:BatchGetBuilds
               - codebuild:StartBuild
+              - codebuild:StopBuild
             Resource:
               - "*"
           - Sid: DeviceFarmPolicy
