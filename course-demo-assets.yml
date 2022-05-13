@@ -98,3 +98,7 @@ Outputs:
   WebsiteURL:
     Value: !GetAtt DemoDeploymentStack.Outputs.WebsiteURL
     Description: Application URL
+
+  DNSRecord:
+    Value: !GetAtt DemoDeploymentStack.Outputs.DNSRecord
+    Description: DNS

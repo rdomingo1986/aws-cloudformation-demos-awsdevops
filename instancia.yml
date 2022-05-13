@@ -194,6 +194,16 @@ Resources:
       Domain: vpc
       InstanceId: !Ref WebServerInstance
 
+  DNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId : Z1WUR6R0IVO7YD
+      Name: www.domingoramirez.net
+      ResourceRecords:
+      - !Ref WebServerEIP
+      TTL: 900
+      Type: A
+
 Outputs:
   WebServerPublicDNS:
     Description: 'Public DNS of EC2 instance'
@@ -206,3 +216,7 @@ Outputs:
   WebsiteURL:
     Value: !Sub http://${WebServerEIP}
     Description: Application URL
+
+  DNSRecord:
+    Value: !Ref DNSRecord
+    Description: DNS
